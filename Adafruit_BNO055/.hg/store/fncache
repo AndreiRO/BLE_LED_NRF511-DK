@@ -1,0 +1,7 @@
+data/imumaths.h.i
+data/matrix.h.i
+data/Adafruit_BNO055.cpp.i
+data/quaternion.h.i
+data/Adafruit_Sensor.h.i
+data/vector.h.i
+data/Adafruit_BNO055.h.i
