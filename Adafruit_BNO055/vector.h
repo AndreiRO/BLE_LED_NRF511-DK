@@ -25,7 +25,6 @@
 #include <stdint.h>
 #include <math.h>
 
-double abs(double x) { return (x > 0) ? x : -x;}
 
 namespace imu
 {
@@ -97,7 +96,7 @@ public:
     void normalize()
     {
         double mag = magnitude();
-        if(abs(mag) <= 0.0001)
+        if(fabs(mag) <= 0.0001)
             return;
 
         int i;

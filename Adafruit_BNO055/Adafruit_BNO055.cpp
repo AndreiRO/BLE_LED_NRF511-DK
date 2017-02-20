@@ -51,10 +51,11 @@ Adafruit_BNO055::Adafruit_BNO055(int32_t sensorID, uint8_t address, I2C* i2c_ptr
 bool Adafruit_BNO055::begin(adafruit_bno055_opmode_t mode)
 {
   /* Enable I2C */
-  //i2c->frequency(10000);
+  i2c->frequency(100000);
 
   /* Make sure we have the right device */
   uint8_t id = read8(BNO055_CHIP_ID_ADDR);
+
   if(id != BNO055_ID)
   {
     wait_ms(1000); // hold on for boot
@@ -64,7 +65,7 @@ bool Adafruit_BNO055::begin(adafruit_bno055_opmode_t mode)
     }
   }
 
-  /* Switch to config mode (just in case since this is the default) */
+  // /* Switch to config mode (just in case since this is the default) */
   setMode(OPERATION_MODE_CONFIG);
 
   /* Reset */
@@ -82,14 +83,13 @@ bool Adafruit_BNO055::begin(adafruit_bno055_opmode_t mode)
   write8(BNO055_PAGE_ID_ADDR, 0);
 
   /* Set the output units */
-  /*
+
   uint8_t unitsel = (0 << 7) | // Orientation = Android
                     (0 << 4) | // Temperature = Celsius
                     (0 << 2) | // Euler = Degrees
                     (1 << 1) | // Gyro = Rads
                     (0 << 0);  // Accelerometer = m/s^2
   write8(BNO055_UNIT_SEL_ADDR, unitsel);
-  */
 
   write8(BNO055_SYS_TRIGGER_ADDR, 0x0);
   wait_ms(10);
@@ -270,8 +270,8 @@ imu::Vector<3> Adafruit_BNO055::getVector(adafruit_vector_type_t vector_type)
   x = y = z = 0;
 
   /* Read vector data (6 bytes) */
-  //readLen((adafruit_bno055_reg_t)vector_type, (char*)buffer, 6);
-  readLen((adafruit_bno055_reg_t)0x08, (char*)buffer, 6);
+  readLen((adafruit_bno055_reg_t)vector_type, (char*)buffer, 6);
+  //readLen((adafruit_bno055_reg_t)0x08, (char*)buffer, 6);
 
   x = ((int16_t)buffer[0]) | (((int16_t)buffer[1]) << 8);
   y = ((int16_t)buffer[2]) | (((int16_t)buffer[3]) << 8);
@@ -398,10 +398,10 @@ bool Adafruit_BNO055::getEvent(sensors_event_t *event)
 bool Adafruit_BNO055::write8(adafruit_bno055_reg_t reg, char value)
 {
   char reg_to_write = (char)(reg);
-  i2c->write(_address<<1, &reg_to_write, 1, true); 
-  wait(0.001);
-  i2c->write(_address<<1, &value, 1, false); 
-  wait(0.001);
+  char payload[2] = {(char)reg, value};
+  i2c->write(_address<<1, payload, 2);
+  //i2c->write(_address<<1, &reg_to_write, 1, true);
+  //i2c->write(_address<<1, &value, 1, true);
 
   /* ToDo: Check for error! */
   return true;
@@ -417,12 +417,9 @@ char Adafruit_BNO055::read8(adafruit_bno055_reg_t reg )
   char to_read = 0;
   char to_write = (char)reg;
 
-  i2c->write(_address<<1, &to_write, 1, false);
-  wait(0.001);
+  i2c->write(_address<<1, &to_write, 1, true);
   i2c->read(_address<<1, &to_read, 1, false);
-  wait(0.001);
-  
-  printf(" I2C Read : %d from addr: %d\r\n", to_read, to_write);
+
   return to_read;
 }
 
@@ -435,12 +432,9 @@ bool Adafruit_BNO055::readLen(adafruit_bno055_reg_t reg, char* buffer, int len)
 {
   char reg_to_write = (char)(reg);
 
-  i2c->write(_address<<1, &reg_to_write, 1, false); 
-  wait(0.001);
+  i2c->write(_address<<1, &reg_to_write, 1, true);
   i2c->read(_address<<1, buffer, len, false);
-  wait(0.001);
 
-  printf("I2C: Read %d bytes from address %d\r\n", len, reg_to_write);
 
   /* ToDo: Check for errors! */
   return true;

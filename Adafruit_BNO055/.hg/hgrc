@@ -1,4 +1,0 @@
-[ui]
-ignore.local = .hg/hgignore
-[paths]
-default = http://mbed.org/teams/Ben-Simon-Inez-IDD/code/Adafruit_BNO055/
