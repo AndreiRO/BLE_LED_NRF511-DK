@@ -1,5 +1,10 @@
-main.o: ../main.cpp .././mbed_config.h ../mbed/./mbed.h \
- ../mbed/./toolchain.h ../mbed/./platform.h \
+main.o: ../main.cpp .././mbed_config.h \
+ ../Adafruit_BNO055/Adafruit_Sensor.h \
+ ../Adafruit_BNO055/Adafruit_BNO055.h \
+ ../Adafruit_BNO055/Adafruit_Sensor.h ../Adafruit_BNO055/imumaths.h \
+ ../Adafruit_BNO055/vector.h ../Adafruit_BNO055/matrix.h \
+ ../Adafruit_BNO055/quaternion.h ../mbed/./mbed.h ../mbed/./toolchain.h \
+ ../mbed/./platform.h \
  ../mbed/TARGET_NRF51_DK/TARGET_NORDIC/TARGET_NRF5/TARGET_MCU_NRF51822_UNIFIED/TARGET_NRF51_DK/device.h \
  ../mbed/TARGET_NRF51_DK/TARGET_NORDIC/TARGET_NRF5/objects.h \
  ../mbed/TARGET_NRF51_DK/cmsis.h ../mbed/TARGET_NRF51_DK/nrf.h \
@@ -39,9 +44,9 @@ main.o: ../main.cpp .././mbed_config.h ../mbed/./mbed.h \
  ../mbed/./LowPowerTicker.h ../mbed/./LowPowerTimer.h \
  ../mbed/./LocalFileSystem.h ../mbed/./InterruptIn.h \
  ../mbed/./gpio_irq_api.h ../mbed/./wait_api.h ../mbed/./sleep_api.h \
- ../mbed/./rtc_time.h ../BLE_API/ble/BLE.h ../BLE_API/ble/blecommon.h \
- ../BLE_API/ble/Gap.h ../BLE_API/ble/BLEProtocol.h \
- ../BLE_API/ble/GapAdvertisingData.h \
+ ../mbed/./rtc_time.h ../Adafruit_BNO055/imumaths.h ../BLE_API/ble/BLE.h \
+ ../BLE_API/ble/blecommon.h ../BLE_API/ble/Gap.h \
+ ../BLE_API/ble/BLEProtocol.h ../BLE_API/ble/GapAdvertisingData.h \
  ../BLE_API/ble/GapAdvertisingParams.h ../BLE_API/ble/GapScanningParams.h \
  ../BLE_API/ble/GapEvents.h \
  ../BLE_API/ble/CallChainOfFunctionPointersWithContext.h \
@@ -53,13 +58,23 @@ main.o: ../main.cpp .././mbed_config.h ../mbed/./mbed.h \
  ../BLE_API/ble/GattServerEvents.h ../BLE_API/ble/GattClient.h \
  ../BLE_API/ble/ServiceDiscovery.h \
  ../BLE_API/ble/CharacteristicDescriptorDiscovery.h \
- ../BLE_API/ble/FunctionPointerWithContext.h ../mbed/./mbed_error.h \
- ../Adafruit_BNO055/Adafruit_BNO055.h \
- ../Adafruit_BNO055/Adafruit_Sensor.h ../Adafruit_BNO055/imumaths.h \
- ../Adafruit_BNO055/vector.h ../Adafruit_BNO055/matrix.h \
- ../Adafruit_BNO055/quaternion.h
+ ../BLE_API/ble/FunctionPointerWithContext.h ../mbed/./mbed_error.h
 
 .././mbed_config.h:
+
+../Adafruit_BNO055/Adafruit_Sensor.h:
+
+../Adafruit_BNO055/Adafruit_BNO055.h:
+
+../Adafruit_BNO055/Adafruit_Sensor.h:
+
+../Adafruit_BNO055/imumaths.h:
+
+../Adafruit_BNO055/vector.h:
+
+../Adafruit_BNO055/matrix.h:
+
+../Adafruit_BNO055/quaternion.h:
 
 ../mbed/./mbed.h:
 
@@ -231,6 +246,8 @@ main.o: ../main.cpp .././mbed_config.h ../mbed/./mbed.h \
 
 ../mbed/./rtc_time.h:
 
+../Adafruit_BNO055/imumaths.h:
+
 ../BLE_API/ble/BLE.h:
 
 ../BLE_API/ble/blecommon.h:
@@ -280,15 +297,3 @@ main.o: ../main.cpp .././mbed_config.h ../mbed/./mbed.h \
 ../BLE_API/ble/FunctionPointerWithContext.h:
 
 ../mbed/./mbed_error.h:
-
-../Adafruit_BNO055/Adafruit_BNO055.h:
-
-../Adafruit_BNO055/Adafruit_Sensor.h:
-
-../Adafruit_BNO055/imumaths.h:
-
-../Adafruit_BNO055/vector.h:
-
-../Adafruit_BNO055/matrix.h:
-
-../Adafruit_BNO055/quaternion.h:
